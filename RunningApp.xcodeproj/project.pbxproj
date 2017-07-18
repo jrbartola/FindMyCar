@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		88BD2DEB1F19AB5000AD8810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */; };
-		88BD2DED1F19AB5000AD8810 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD2DEC1F19AB5000AD8810 /* ViewController.swift */; };
+		88BD2DED1F19AB5000AD8810 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD2DEC1F19AB5000AD8810 /* MainViewController.swift */; };
 		88BD2DF01F19AB5000AD8810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BD2DEE1F19AB5000AD8810 /* Main.storyboard */; };
 		88BD2DF21F19AB5000AD8810 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BD2DF11F19AB5000AD8810 /* Assets.xcassets */; };
 		88BD2DF51F19AB5000AD8810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BD2DF31F19AB5000AD8810 /* LaunchScreen.storyboard */; };
+		88BD2DFE1F1D9D5900AD8810 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BD2DFD1F1D9D5900AD8810 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		88BD2DE71F19AB5000AD8810 /* RunningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		88BD2DEC1F19AB5000AD8810 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88BD2DEC1F19AB5000AD8810 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		88BD2DEF1F19AB5000AD8810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88BD2DF11F19AB5000AD8810 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88BD2DF41F19AB5000AD8810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88BD2DF61F19AB5000AD8810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88BD2DFD1F1D9D5900AD8810 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88BD2DFE1F1D9D5900AD8810 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +43,7 @@
 			children = (
 				88BD2DE91F19AB5000AD8810 /* RunningApp */,
 				88BD2DE81F19AB5000AD8810 /* Products */,
+				88BD2DFC1F1D9D5900AD8810 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +59,21 @@
 			isa = PBXGroup;
 			children = (
 				88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */,
-				88BD2DEC1F19AB5000AD8810 /* ViewController.swift */,
+				88BD2DEC1F19AB5000AD8810 /* MainViewController.swift */,
 				88BD2DEE1F19AB5000AD8810 /* Main.storyboard */,
 				88BD2DF11F19AB5000AD8810 /* Assets.xcassets */,
 				88BD2DF31F19AB5000AD8810 /* LaunchScreen.storyboard */,
 				88BD2DF61F19AB5000AD8810 /* Info.plist */,
 			);
 			path = RunningApp;
+			sourceTree = "<group>";
+		};
+		88BD2DFC1F1D9D5900AD8810 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88BD2DFD1F1D9D5900AD8810 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +109,11 @@
 					88BD2DE61F19AB5000AD8810 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -136,7 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88BD2DED1F19AB5000AD8810 /* ViewController.swift in Sources */,
+				88BD2DED1F19AB5000AD8810 /* MainViewController.swift in Sources */,
 				88BD2DEB1F19AB5000AD8810 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
