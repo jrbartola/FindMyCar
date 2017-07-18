@@ -35,6 +35,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="4T0-aq-TDq" id="G8J-yw-jIG"/>
+                        <outlet property="searchBar" destination="lqD-WY-JJK" id="xom-eu-7nk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
