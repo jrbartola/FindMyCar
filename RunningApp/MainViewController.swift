@@ -21,23 +21,48 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        mapView.showsUserLocation = true
-        mapView.mapType = MKMapType.hybrid
         
-        centerMapOnLocation(coordinate: self.locationManager.location?.coordinate)
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            locationManager.distanceFilter = 1000
+            let coordinate = locationManager.location?.coordinate
+            
+            
+            mapView.showsUserLocation = true
+            //mapView.mapType = MKMapType.hybrid
+            
+            centerMapOnLocation(coordinate: coordinate)
+        }
         
         searchBar.delegate = self
         
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor
+        overlay: MKOverlay) -> MKOverlayRenderer {
         
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.blue
+        renderer.lineWidth = 5.0
+        return renderer
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        centerMapOnLocation(coordinate: location.coordinate)
     }
     
     func centerMapOnLocation(coordinate: CLLocationCoordinate2D?) {
-        if let coordinate = coordinate {
-            self.mapView.setCenter(coordinate, animated: true)
+        if let coord = coordinate {
+            self.mapView.setCenter(coord, animated: true)
+            let span = MKCoordinateSpanMake(0.075, 0.075)
+            let region = MKCoordinateRegion(center: coord, span: span)
+            
+            self.mapView.setRegion(region, animated: true)
+
         }
     }
     
@@ -51,21 +76,65 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             if error == nil {
                 
                 let placemark = placemarks?.first
-                let anno = MKPointAnnotation()
-                anno.coordinate = (placemark?.location?.coordinate)!
-                anno.title = searchBar.text!
                 
-                let span = MKCoordinateSpanMake(0.075, 0.075)
-                let region = MKCoordinateRegion(center: anno.coordinate, span: span)
+                if let coordinate = placemark?.location?.coordinate {
+                    let destPlacemark = MKPlacemark(coordinate: coordinate)
+                    self.getRouteTo(destPlacemark: destPlacemark)
+                }
                 
-                self.mapView.setRegion(region, animated: true)
-                self.mapView.addAnnotation(anno)
-                self.mapView.selectAnnotation(anno, animated: true)
+                
+                
+                let coordinate = (placemark?.location?.coordinate)!
+                
+//                let anno = MKPointAnnotation()
+//                anno.coordinate = (placemark?.location?.coordinate)!
+//                anno.title = searchBar.text!
+                
+//                let span = MKCoordinateSpanMake(0.075, 0.075)
+//                let region = MKCoordinateRegion(center: anno.coordinate, span: span)
+//                
+//                self.mapView.setRegion(region, animated: true)
+//                self.mapView.addAnnotation(anno)
+//                self.mapView.selectAnnotation(anno, animated: true)
                 
             } else {
                 print(error?.localizedDescription ?? "ERROR: ABORTING SEARCH")
             }
         }
+    }
+    
+    func getRouteTo(destPlacemark: MKPlacemark) {
+        let currentPlacemark = MKPlacemark(coordinate: mapView.userLocation.coordinate)
+        
+        let currentItem = MKMapItem(placemark: currentPlacemark)
+        let destItem = MKMapItem(placemark: destPlacemark)
+        
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = currentItem
+        directionRequest.destination = destItem
+        directionRequest.transportType = .automobile
+        
+        let directions = MKDirections(request: directionRequest)
+        
+        directions.calculate(completionHandler: { (response, error) in
+            
+            guard let response = response else {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                return
+            }
+            
+            // Grab first route from the array
+            let route = response.routes[0]
+            //print(route.steps)
+            self.mapView.add(route.polyline, level: .aboveRoads)
+            
+            let boundingRectangle = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegionForMapRect(boundingRectangle), animated: true)
+        })
+        
     }
 
 }
