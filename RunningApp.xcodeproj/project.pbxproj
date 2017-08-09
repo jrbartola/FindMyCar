@@ -7,27 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		882B25271F3A8F2F00D808B4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */; };
 		884D08671F1DADA00062DCA4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D08661F1DADA00062DCA4 /* Config.swift */; };
 		884D08691F2024320062DCA4 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D08681F2024320062DCA4 /* NetworkClient.swift */; };
+		887653DD1F3A7DCD00504574 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887653DC1F3A7DCD00504574 /* Locations.swift */; };
+		887653DF1F3A7E8300504574 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887653DE1F3A7E8300504574 /* LocationsViewController.swift */; };
 		88BD2DEB1F19AB5000AD8810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */; };
-		88BD2DED1F19AB5000AD8810 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD2DEC1F19AB5000AD8810 /* MainViewController.swift */; };
+		88BD2DED1F19AB5000AD8810 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */; };
 		88BD2DF01F19AB5000AD8810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BD2DEE1F19AB5000AD8810 /* Main.storyboard */; };
 		88BD2DF21F19AB5000AD8810 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BD2DF11F19AB5000AD8810 /* Assets.xcassets */; };
 		88BD2DF51F19AB5000AD8810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BD2DF31F19AB5000AD8810 /* LaunchScreen.storyboard */; };
 		88BD2DFE1F1D9D5900AD8810 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BD2DFD1F1D9D5900AD8810 /* MapKit.framework */; };
+		88C811141F2835E2005EBFB2 /* LocationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */; };
+		88C811151F2835E2005EBFB2 /* LocationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C811131F2835E2005EBFB2 /* LocationsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		884D08661F1DADA00062DCA4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		884D08681F2024320062DCA4 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		887653DC1F3A7DCD00504574 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		887653DE1F3A7E8300504574 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		88BD2DE71F19AB5000AD8810 /* RunningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		88BD2DEC1F19AB5000AD8810 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		88BD2DEF1F19AB5000AD8810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88BD2DF11F19AB5000AD8810 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88BD2DF41F19AB5000AD8810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88BD2DF61F19AB5000AD8810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BD2DFD1F1D9D5900AD8810 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewCell.swift; sourceTree = "<group>"; };
+		88C811131F2835E2005EBFB2 /* LocationsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +73,13 @@
 			isa = PBXGroup;
 			children = (
 				88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */,
-				88BD2DEC1F19AB5000AD8810 /* MainViewController.swift */,
+				88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */,
+				882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */,
+				887653DE1F3A7E8300504574 /* LocationsViewController.swift */,
+				887653DC1F3A7DCD00504574 /* Locations.swift */,
 				88BD2DEE1F19AB5000AD8810 /* Main.storyboard */,
+				88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */,
+				88C811131F2835E2005EBFB2 /* LocationsTableViewCell.xib */,
 				88BD2DF11F19AB5000AD8810 /* Assets.xcassets */,
 				88BD2DF31F19AB5000AD8810 /* LaunchScreen.storyboard */,
 				88BD2DF61F19AB5000AD8810 /* Info.plist */,
@@ -114,6 +129,7 @@
 				TargetAttributes = {
 					88BD2DE61F19AB5000AD8810 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = W2P5R7TX5B;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -148,6 +164,7 @@
 			files = (
 				88BD2DF51F19AB5000AD8810 /* LaunchScreen.storyboard in Resources */,
 				88BD2DF21F19AB5000AD8810 /* Assets.xcassets in Resources */,
+				88C811151F2835E2005EBFB2 /* LocationsTableViewCell.xib in Resources */,
 				88BD2DF01F19AB5000AD8810 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,9 +176,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88BD2DED1F19AB5000AD8810 /* MainViewController.swift in Sources */,
+				88BD2DED1F19AB5000AD8810 /* MapViewController.swift in Sources */,
+				887653DF1F3A7E8300504574 /* LocationsViewController.swift in Sources */,
+				887653DD1F3A7DCD00504574 /* Locations.swift in Sources */,
+				88C811141F2835E2005EBFB2 /* LocationsTableViewCell.swift in Sources */,
 				88BD2DEB1F19AB5000AD8810 /* AppDelegate.swift in Sources */,
 				884D08671F1DADA00062DCA4 /* Config.swift in Sources */,
+				882B25271F3A8F2F00D808B4 /* TabBarViewController.swift in Sources */,
 				884D08691F2024320062DCA4 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +306,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W2P5R7TX5B;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.org.RunningApp;
@@ -297,6 +319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W2P5R7TX5B;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.org.RunningApp;
