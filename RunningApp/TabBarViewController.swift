@@ -8,17 +8,27 @@
 
 import UIKit
 
-class TabBarViewController: UITabBarController {
+class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addRightBarButton()
+        // Do any additional setup after loading the view.
     }
     
-    func addRightBarButton() {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "map_marker"), style: .plain, target: self, action: #selector(MapViewController.addLocation))
+        // If we clicked on the recent tab, reload the tableview
+        if item.title! == "Recent" {
+            let locationsViewController = self.viewControllers![0] as! LocationsViewController
+            locationsViewController.removeRightBarButton()
+            locationsViewController.locationsTableView.reloadData()
         
+        } else if item.title! == "Map" {
+            let mapViewController = self.viewControllers![1] as! MapViewController
+            mapViewController.addRightBarButton()
+            
+        }
     }
+
 }

@@ -10,31 +10,32 @@ import UIKit
 import MapKit
 
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate{
 
     @IBOutlet weak var mapView: MKMapView!
     
-    let locationManager = CLLocationManager()
+    //let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        locationManager.requestWhenInUseAuthorization()
+        //locationManager.requestWhenInUseAuthorization()
+        print("f")
+        //if CLLocationManager.locationServicesEnabled() {
+        //    locationManager.delegate = self
+        //    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //    locationManager.startUpdatingLocation()
+        //    locationManager.distanceFilter = 1000
+        LocationService.sharedInstance.startUpdatingLocation()
+        let coordinate = LocationService.sharedInstance.locationManager?.location?.coordinate
+            
+        mapView.showsUserLocation = true
+        //mapView.mapType = MKMapType.hybrid
+            
+        centerMapOnLocation(coordinate: coordinate)
         
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-            locationManager.distanceFilter = 1000
-            let coordinate = locationManager.location?.coordinate
-            
-            
-            mapView.showsUserLocation = true
-            //mapView.mapType = MKMapType.hybrid
-            
-            centerMapOnLocation(coordinate: coordinate)
-        }
-
+        
+        addRightBarButton()
         addMapTrackingButton()
         mapView.delegate = self
         
@@ -51,7 +52,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.mapView.addSubview(button)
     }
     
-    
+    func addRightBarButton() {
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "map_marker"), style: .plain, target: self, action: #selector(self.addLocation))
+        
+    }
     
     func centerMapOnUserButtonClicked() {
         self.mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
@@ -82,45 +86,43 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.becomeFirstResponder()
-//        print(searchBar.text!)
+    func geocode(location: String, callback: @escaping (CLLocationCoordinate2D, CLLocationCoordinate2D) -> Void) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(location) { (placemarks: [CLPlacemark]?, error: Error?) in
+
+            if error == nil {
+
+                let placemark = placemarks?.first
+
+                if let coordinate = placemark?.location?.coordinate {
+                    //self.getRouteTo(destPlacemark: destPlacemark)
+                    return callback((LocationService.sharedInstance.locationManager?.location?.coordinate)!, coordinate)
+                }
+
+
+
+                let coordinate = (placemark?.location?.coordinate)!
+
+//                let anno = MKPointAnnotation()
+//                anno.coordinate = (placemark?.location?.coordinate)!
+//                anno.title = searchBar.text!
+
+//                let span = MKCoordinateSpanMake(0.075, 0.075)
+//                let region = MKCoordinateRegion(center: anno.coordinate, span: span)
 //
-//        let geocoder = CLGeocoder()
-//        geocoder.geocodeAddressString(searchBar.text!) { (placemarks: [CLPlacemark]?, error: Error?) in
-//
-//            if error == nil {
-//
-//                let placemark = placemarks?.first
-//
-//                if let coordinate = placemark?.location?.coordinate {
-//                    let destPlacemark = MKPlacemark(coordinate: coordinate)
-//                    self.getRouteTo(destPlacemark: destPlacemark)
-//                }
-//
-//
-//
-//                let coordinate = (placemark?.location?.coordinate)!
-//
-////                let anno = MKPointAnnotation()
-////                anno.coordinate = (placemark?.location?.coordinate)!
-////                anno.title = searchBar.text!
-//
-////                let span = MKCoordinateSpanMake(0.075, 0.075)
-////                let region = MKCoordinateRegion(center: anno.coordinate, span: span)
-////
-////                self.mapView.setRegion(region, animated: true)
-////                self.mapView.addAnnotation(anno)
-////                self.mapView.selectAnnotation(anno, animated: true)
-//
-//            } else {
-//                print(error?.localizedDescription ?? "ERROR: ABORTING SEARCH")
-//            }
-//        }
-//    }
+//                self.mapView.setRegion(region, animated: true)
+//                self.mapView.addAnnotation(anno)
+//                self.mapView.selectAnnotation(anno, animated: true)
+
+            } else {
+                print(error?.localizedDescription ?? "ERROR: ABORTING SEARCH")
+            }
+        }
+    }
     
-    func getRouteTo(destPlacemark: MKPlacemark) {
-        let currentPlacemark = MKPlacemark(coordinate: mapView.userLocation.coordinate)
+    func getRoute(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) {
+        let currentPlacemark = MKPlacemark(coordinate: from)
+        let destPlacemark = MKPlacemark(coordinate: to)
         
         let currentItem = MKMapItem(placemark: currentPlacemark)
         let destItem = MKMapItem(placemark: destPlacemark)
@@ -165,13 +167,39 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func addLocation() {
-        guard let coordinate = locationManager.location?.coordinate else {
+        guard let location = LocationService.sharedInstance.locationManager?.location else {
             print("Could not retreive location coordinate...")
             return
         }
-        Locations.locations.append(coordinate)
-        print(Locations.locations)
+        
+        let placemark = self.getAddressFor(location: location)
+        //Locations.locations.append(location)
+        //print(Locations.locations)
+        
     }
-
+    
+    private func getAddressFor(location: CLLocation) {
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) in
+            if let error = error {
+                print("Reverse geocoder failed with error" + error.localizedDescription)
+                return
+            }
+            
+            if let placemarks = placemarks {
+                let pm = placemarks[0] as CLPlacemark
+                guard let addresses = pm.addressDictionary else { return }
+                
+                guard let street = addresses["Street"], let state = addresses["State"], let zipcode = addresses["ZIP"] else { return }
+                
+                let streetAddress = String(describing: street) + " " + String(describing: state) + ", " + String(describing: zipcode)
+                
+                Locations.locations.append((streetAddress, location))
+            } else {
+                print("Problem with the data received from geocoder")
+            }
+        })
+    }
 }
+
+
 

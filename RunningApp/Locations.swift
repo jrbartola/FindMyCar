@@ -9,5 +9,5 @@
 import MapKit
 
 class Locations {
-    static var locations: [CLLocationCoordinate2D] = []
+    static var locations: [(String, CLLocation)] = []
 }

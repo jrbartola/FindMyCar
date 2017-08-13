@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		882B25271F3A8F2F00D808B4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */; };
+		882B25291F3FF37800D808B4 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882B25281F3FF37800D808B4 /* LocationService.swift */; };
 		884D08671F1DADA00062DCA4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D08661F1DADA00062DCA4 /* Config.swift */; };
 		884D08691F2024320062DCA4 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D08681F2024320062DCA4 /* NetworkClient.swift */; };
 		887653DD1F3A7DCD00504574 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887653DC1F3A7DCD00504574 /* Locations.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		882B25281F3FF37800D808B4 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		884D08661F1DADA00062DCA4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		884D08681F2024320062DCA4 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		887653DC1F3A7DCD00504574 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
@@ -73,9 +75,10 @@
 			isa = PBXGroup;
 			children = (
 				88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */,
-				88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */,
 				882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */,
+				88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */,
 				887653DE1F3A7E8300504574 /* LocationsViewController.swift */,
+				882B25281F3FF37800D808B4 /* LocationService.swift */,
 				887653DC1F3A7DCD00504574 /* Locations.swift */,
 				88BD2DEE1F19AB5000AD8810 /* Main.storyboard */,
 				88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */,
@@ -184,6 +187,7 @@
 				884D08671F1DADA00062DCA4 /* Config.swift in Sources */,
 				882B25271F3A8F2F00D808B4 /* TabBarViewController.swift in Sources */,
 				884D08691F2024320062DCA4 /* NetworkClient.swift in Sources */,
+				882B25291F3FF37800D808B4 /* LocationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
