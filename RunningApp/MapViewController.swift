@@ -15,6 +15,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var mapView: MKMapView!
     
     var directions = false
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         button.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
         button.setImage(image, for: .normal)
         button.backgroundColor = .clear
+        button.tintColor = Styles.color(style: .lightBlue)
         button.addTarget(self, action: #selector(self.centerMapOnUserButtonClicked), for: .touchUpInside)
         self.mapView.addSubview(button)
     }
@@ -117,7 +119,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         }
     }
     
-    func getRouteTo(location: Location) {
+    func getRouteTo(location: Location, callback: @escaping () -> Void) {
         guard let coord = LocationService.sharedInstance.locationManager?.location?.coordinate else {
             print("Could not find a current Location...")
             return
@@ -132,7 +134,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         let directionRequest = MKDirectionsRequest()
         directionRequest.source = currentItem
         directionRequest.destination = destItem
-        directionRequest.transportType = .automobile
+        directionRequest.transportType = .walking
         
         let directions = MKDirections(request: directionRequest)
         
@@ -155,7 +157,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             
             let anno = MKPointAnnotation()
             anno.coordinate = destPlacemark.coordinate
-            anno.title = location.name != nil ? location.name! : self.parseDate(date: location.date)
+            anno.title = location.name != nil ? location.name! : Util.parseDate(date: location.date)
             
             let span = MKCoordinateSpanMake(0.075, 0.075)
             let region = MKCoordinateRegion(center: anno.coordinate, span: span)
@@ -167,6 +169,8 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             
             // Set 'directions' to true so we know that the map is currently displaying a direction
             self.directions = true
+            
+            callback()
             
         })
         
@@ -219,12 +223,6 @@ class MapViewController: UIViewController, MKMapViewDelegate{
                 print("Problem with the data received from geocoder")
             }
         })
-    }
-    
-    private func parseDate(date: Date) -> String {
-        let df = DateFormatter()
-        df.dateFormat = "MMM dd yyyy hh:mm a"
-        return df.string(from: date)
     }
     
 }

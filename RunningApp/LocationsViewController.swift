@@ -18,6 +18,17 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let backgroundView = UIImageView(image: #imageLiteral(resourceName: "roadbackground"))
+        backgroundView.contentMode = .scaleAspectFill
+        
+        locationsTableView.backgroundView = backgroundView
+        
+        // Remove extra separators after existing cells
+        locationsTableView.tableFooterView = UIView()
+        
+        // Remove table view separators all together
+        locationsTableView.separatorStyle = .none
+        
         locationsTableView.delegate = self
         locationsTableView.dataSource = self
         
@@ -41,9 +52,27 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let cell = locationsTableView.dequeueReusableCell(withIdentifier: locationsCellIdentifier) as! LocationsTableViewCell
         
-        cell.tableView = self.locationsTableView
+        cell.backgroundColor = .clear
         
+        // Add a rounded view to the tableview cell
+        
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 60))
+        
+        whiteRoundedView.layer.backgroundColor = UIColor.white.cgColor
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 2.0
+        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        whiteRoundedView.layer.shadowOpacity = 0.2
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubview(toBack: whiteRoundedView)
+        
+        
+        cell.tableView = self.locationsTableView
         cell.addressLabel.text = "\(Locations.locations[indexPath.row].address)"
+        cell.dateLabel.text = "\(Util.parseDate(date: Locations.locations[indexPath.row].date))"
+        
+        
         
         return cell
     }
@@ -56,11 +85,23 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Find route from current location to destination using the mapViewController
         let mapVC = self.tabBarController?.viewControllers![1] as! MapViewController
-    
-        mapVC.getRouteTo(location: loc)
+ 
+        let container = UIView()
+        let loadingView = UIView()
+        let activityIndicator = UIActivityIndicatorView()
+        
         mapVC.addLeftBarButton()
         mapVC.addRightBarButton()
+        
+        Util.showActivityIndicator(uiView: mapVC.view, container: container, loadingView: loadingView, activityIndicator: activityIndicator)
+        
+        mapVC.getRouteTo(location: loc, callback: {
+            Util.stopActivityIndicator(uiView: mapVC.view, container: container, loadingView: loadingView, activityIndicator: activityIndicator)
+        })
+
         self.tabBarController?.selectedIndex = 1
+        
+        
         
     }
     

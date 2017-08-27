@@ -20,6 +20,8 @@
 		88BD2DF51F19AB5000AD8810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BD2DF31F19AB5000AD8810 /* LaunchScreen.storyboard */; };
 		88BD2DFE1F1D9D5900AD8810 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BD2DFD1F1D9D5900AD8810 /* MapKit.framework */; };
 		88C811141F2835E2005EBFB2 /* LocationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */; };
+		88F519011F52731E009D2E35 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F519001F52731E009D2E35 /* Styles.swift */; };
+		88F519031F5359BC009D2E35 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F519021F5359BC009D2E35 /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		88BD2DF61F19AB5000AD8810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BD2DFD1F1D9D5900AD8810 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewCell.swift; sourceTree = "<group>"; };
+		88F519001F52731E009D2E35 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		88F519021F5359BC009D2E35 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,15 +80,17 @@
 				882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */,
 				88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */,
 				887653DE1F3A7E8300504574 /* LocationsViewController.swift */,
-				882B25281F3FF37800D808B4 /* LocationService.swift */,
-				887653DC1F3A7DCD00504574 /* Locations.swift */,
-				88BD2DEE1F19AB5000AD8810 /* Main.storyboard */,
 				88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */,
+				88BD2DEE1F19AB5000AD8810 /* Main.storyboard */,
 				88BD2DF11F19AB5000AD8810 /* Assets.xcassets */,
 				88BD2DF31F19AB5000AD8810 /* LaunchScreen.storyboard */,
 				88BD2DF61F19AB5000AD8810 /* Info.plist */,
+				882B25281F3FF37800D808B4 /* LocationService.swift */,
+				887653DC1F3A7DCD00504574 /* Locations.swift */,
 				884D08661F1DADA00062DCA4 /* Config.swift */,
 				884D08681F2024320062DCA4 /* NetworkClient.swift */,
+				88F519001F52731E009D2E35 /* Styles.swift */,
+				88F519021F5359BC009D2E35 /* Util.swift */,
 			);
 			path = RunningApp;
 			sourceTree = "<group>";
@@ -175,7 +181,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88F519031F5359BC009D2E35 /* Util.swift in Sources */,
 				88BD2DED1F19AB5000AD8810 /* MapViewController.swift in Sources */,
+				88F519011F52731E009D2E35 /* Styles.swift in Sources */,
 				887653DF1F3A7E8300504574 /* LocationsViewController.swift in Sources */,
 				887653DD1F3A7DCD00504574 /* Locations.swift in Sources */,
 				88C811141F2835E2005EBFB2 /* LocationsTableViewCell.swift in Sources */,
