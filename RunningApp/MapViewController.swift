@@ -14,18 +14,11 @@ class MapViewController: UIViewController, MKMapViewDelegate{
 
     @IBOutlet weak var mapView: MKMapView!
     
-    //let locationManager = CLLocationManager()
+    var directions = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //locationManager.requestWhenInUseAuthorization()
-        print("f")
-        //if CLLocationManager.locationServicesEnabled() {
-        //    locationManager.delegate = self
-        //    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        //    locationManager.startUpdatingLocation()
-        //    locationManager.distanceFilter = 1000
+
         LocationService.sharedInstance.startUpdatingLocation()
         let coordinate = LocationService.sharedInstance.locationManager?.location?.coordinate
             
@@ -34,7 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             
         centerMapOnLocation(coordinate: coordinate)
         
-        
+        addLeftBarButton()
         addRightBarButton()
         addMapTrackingButton()
         mapView.delegate = self
@@ -50,6 +43,10 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         button.backgroundColor = .clear
         button.addTarget(self, action: #selector(self.centerMapOnUserButtonClicked), for: .touchUpInside)
         self.mapView.addSubview(button)
+    }
+    
+    func addLeftBarButton() {
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "restart"), style: .plain, target: self, action: #selector(self.clearMap))
     }
     
     func addRightBarButton() {
@@ -96,7 +93,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
 
                 if let coordinate = placemark?.location?.coordinate {
                     //self.getRouteTo(destPlacemark: destPlacemark)
-                    return callback((LocationService.sharedInstance.locationManager?.location?.coordinate)!, coordinate)
+                    return callback(coordinate, coordinate)
                 }
 
 
@@ -120,9 +117,14 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         }
     }
     
-    func getRoute(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) {
-        let currentPlacemark = MKPlacemark(coordinate: from)
-        let destPlacemark = MKPlacemark(coordinate: to)
+    func getRouteTo(location: Location) {
+        guard let coord = LocationService.sharedInstance.locationManager?.location?.coordinate else {
+            print("Could not find a current Location...")
+            return
+            
+        }
+        let currentPlacemark = MKPlacemark(coordinate: coord)
+        let destPlacemark = MKPlacemark(coordinate: location.location.coordinate)
         
         let currentItem = MKMapItem(placemark: currentPlacemark)
         let destItem = MKMapItem(placemark: destPlacemark)
@@ -146,14 +148,14 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             
             // Grab first route from the array
             let route = response.routes[0]
-            //print(route.steps)
             self.mapView.add(route.polyline, level: .aboveRoads)
+            self.removeAnnotations()
             
             var boundingRectangle = route.polyline.boundingMapRect
             
             let anno = MKPointAnnotation()
             anno.coordinate = destPlacemark.coordinate
-            anno.title = "Placemark"
+            anno.title = location.name != nil ? location.name! : self.parseDate(date: location.date)
             
             let span = MKCoordinateSpanMake(0.075, 0.075)
             let region = MKCoordinateRegion(center: anno.coordinate, span: span)
@@ -162,8 +164,29 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             self.mapView.addAnnotation(anno)
             self.mapView.selectAnnotation(anno, animated: true)
             self.mapView.setRegion(MKCoordinateRegionForMapRect(boundingRectangle), animated: true)
+            
+            // Set 'directions' to true so we know that the map is currently displaying a direction
+            self.directions = true
+            
         })
         
+    }
+    
+    func clearMap() {
+        self.removeDirections()
+        self.removeAnnotations()
+    }
+    
+    func removeAnnotations() {
+        mapView.removeAnnotations(mapView.annotations)
+    }
+    
+    func removeDirections() {
+        if mapView.overlays.count > 0 {
+            mapView.remove(mapView.overlays[0])
+        }
+        
+        removeAnnotations()
     }
     
     func addLocation() {
@@ -172,9 +195,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             return
         }
         
-        let placemark = self.getAddressFor(location: location)
-        //Locations.locations.append(location)
-        //print(Locations.locations)
+        self.getAddressFor(location: location)
         
     }
     
@@ -192,13 +213,20 @@ class MapViewController: UIViewController, MKMapViewDelegate{
                 guard let street = addresses["Street"], let state = addresses["State"], let zipcode = addresses["ZIP"] else { return }
                 
                 let streetAddress = String(describing: street) + " " + String(describing: state) + ", " + String(describing: zipcode)
-                
-                Locations.locations.append((streetAddress, location))
+                let newLocation = Location(date: Date(), location: location, name: nil, address: streetAddress)
+                Locations.locations.append(newLocation)
             } else {
                 print("Problem with the data received from geocoder")
             }
         })
     }
+    
+    private func parseDate(date: Date) -> String {
+        let df = DateFormatter()
+        df.dateFormat = "MMM dd yyyy hh:mm a"
+        return df.string(from: date)
+    }
+    
 }
 
 

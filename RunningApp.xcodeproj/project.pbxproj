@@ -20,7 +20,6 @@
 		88BD2DF51F19AB5000AD8810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BD2DF31F19AB5000AD8810 /* LaunchScreen.storyboard */; };
 		88BD2DFE1F1D9D5900AD8810 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BD2DFD1F1D9D5900AD8810 /* MapKit.framework */; };
 		88C811141F2835E2005EBFB2 /* LocationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */; };
-		88C811151F2835E2005EBFB2 /* LocationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C811131F2835E2005EBFB2 /* LocationsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		88BD2DF61F19AB5000AD8810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BD2DFD1F1D9D5900AD8810 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewCell.swift; sourceTree = "<group>"; };
-		88C811131F2835E2005EBFB2 /* LocationsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +80,6 @@
 				887653DC1F3A7DCD00504574 /* Locations.swift */,
 				88BD2DEE1F19AB5000AD8810 /* Main.storyboard */,
 				88C811121F2835E2005EBFB2 /* LocationsTableViewCell.swift */,
-				88C811131F2835E2005EBFB2 /* LocationsTableViewCell.xib */,
 				88BD2DF11F19AB5000AD8810 /* Assets.xcassets */,
 				88BD2DF31F19AB5000AD8810 /* LaunchScreen.storyboard */,
 				88BD2DF61F19AB5000AD8810 /* Info.plist */,
@@ -167,7 +164,6 @@
 			files = (
 				88BD2DF51F19AB5000AD8810 /* LaunchScreen.storyboard in Resources */,
 				88BD2DF21F19AB5000AD8810 /* Assets.xcassets in Resources */,
-				88C811151F2835E2005EBFB2 /* LocationsTableViewCell.xib in Resources */,
 				88BD2DF01F19AB5000AD8810 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

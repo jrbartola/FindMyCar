@@ -9,5 +9,12 @@
 import MapKit
 
 class Locations {
-    static var locations: [(String, CLLocation)] = []
+    static var locations: [Location] = []
+}
+
+struct Location {
+    let date: Date
+    let location: CLLocation
+    let name: String?
+    let address: String
 }

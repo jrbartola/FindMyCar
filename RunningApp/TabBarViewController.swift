@@ -12,7 +12,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.title = "Find Your Car"
         // Do any additional setup after loading the view.
     }
     
@@ -21,11 +21,13 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         // If we clicked on the recent tab, reload the tableview
         if item.title! == "Recent" {
             let locationsViewController = self.viewControllers![0] as! LocationsViewController
+            locationsViewController.removeLeftBarButton()
             locationsViewController.removeRightBarButton()
             locationsViewController.locationsTableView.reloadData()
         
         } else if item.title! == "Map" {
             let mapViewController = self.viewControllers![1] as! MapViewController
+            mapViewController.addLeftBarButton()
             mapViewController.addRightBarButton()
             
         }
