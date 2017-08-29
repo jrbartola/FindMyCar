@@ -31,7 +31,7 @@
 		884D08681F2024320062DCA4 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		887653DC1F3A7DCD00504574 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		887653DE1F3A7E8300504574 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
-		88BD2DE71F19AB5000AD8810 /* RunningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88BD2DE71F19AB5000AD8810 /* FindMyCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMyCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		88BD2DEF1F19AB5000AD8810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 		88BD2DDE1F19AB5000AD8810 = {
 			isa = PBXGroup;
 			children = (
-				88BD2DE91F19AB5000AD8810 /* RunningApp */,
+				88BD2DE91F19AB5000AD8810 /* FindMyCar */,
 				88BD2DE81F19AB5000AD8810 /* Products */,
 				88BD2DFC1F1D9D5900AD8810 /* Frameworks */,
 			);
@@ -68,12 +68,12 @@
 		88BD2DE81F19AB5000AD8810 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				88BD2DE71F19AB5000AD8810 /* RunningApp.app */,
+				88BD2DE71F19AB5000AD8810 /* FindMyCar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		88BD2DE91F19AB5000AD8810 /* RunningApp */ = {
+		88BD2DE91F19AB5000AD8810 /* FindMyCar */ = {
 			isa = PBXGroup;
 			children = (
 				88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */,
@@ -92,7 +92,7 @@
 				88F519001F52731E009D2E35 /* Styles.swift */,
 				88F519021F5359BC009D2E35 /* Util.swift */,
 			);
-			path = RunningApp;
+			path = FindMyCar;
 			sourceTree = "<group>";
 		};
 		88BD2DFC1F1D9D5900AD8810 /* Frameworks */ = {
@@ -106,9 +106,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		88BD2DE61F19AB5000AD8810 /* RunningApp */ = {
+		88BD2DE61F19AB5000AD8810 /* FindMyCar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88BD2DF91F19AB5000AD8810 /* Build configuration list for PBXNativeTarget "RunningApp" */;
+			buildConfigurationList = 88BD2DF91F19AB5000AD8810 /* Build configuration list for PBXNativeTarget "FindMyCar" */;
 			buildPhases = (
 				88BD2DE31F19AB5000AD8810 /* Sources */,
 				88BD2DE41F19AB5000AD8810 /* Frameworks */,
@@ -118,9 +118,9 @@
 			);
 			dependencies = (
 			);
-			name = RunningApp;
+			name = FindMyCar;
 			productName = RunningApp;
-			productReference = 88BD2DE71F19AB5000AD8810 /* RunningApp.app */;
+			productReference = 88BD2DE71F19AB5000AD8810 /* FindMyCar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -145,7 +145,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 88BD2DE21F19AB5000AD8810 /* Build configuration list for PBXProject "RunningApp" */;
+			buildConfigurationList = 88BD2DE21F19AB5000AD8810 /* Build configuration list for PBXProject "FindMyCar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -158,7 +158,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				88BD2DE61F19AB5000AD8810 /* RunningApp */,
+				88BD2DE61F19AB5000AD8810 /* FindMyCar */,
 			);
 		};
 /* End PBXProject section */
@@ -317,7 +317,7 @@
 				DEVELOPMENT_TEAM = W2P5R7TX5B;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.org.RunningApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.org.FindMyCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -330,7 +330,7 @@
 				DEVELOPMENT_TEAM = W2P5R7TX5B;
 				INFOPLIST_FILE = RunningApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.org.RunningApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.org.FindMyCar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -339,7 +339,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		88BD2DE21F19AB5000AD8810 /* Build configuration list for PBXProject "RunningApp" */ = {
+		88BD2DE21F19AB5000AD8810 /* Build configuration list for PBXProject "FindMyCar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88BD2DF71F19AB5000AD8810 /* Debug */,
@@ -348,7 +348,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88BD2DF91F19AB5000AD8810 /* Build configuration list for PBXNativeTarget "RunningApp" */ = {
+		88BD2DF91F19AB5000AD8810 /* Build configuration list for PBXNativeTarget "FindMyCar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88BD2DFA1F19AB5000AD8810 /* Debug */,

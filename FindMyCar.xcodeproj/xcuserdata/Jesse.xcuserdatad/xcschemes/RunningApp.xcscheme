@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "88BD2DE61F19AB5000AD8810"
-               BuildableName = "RunningApp.app"
-               BlueprintName = "RunningApp"
-               ReferencedContainer = "container:RunningApp.xcodeproj">
+               BuildableName = "FindMyCar.app"
+               BlueprintName = "FindMyCar"
+               ReferencedContainer = "container:FindMyCar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "88BD2DE61F19AB5000AD8810"
-            BuildableName = "RunningApp.app"
-            BlueprintName = "RunningApp"
-            ReferencedContainer = "container:RunningApp.xcodeproj">
+            BuildableName = "FindMyCar.app"
+            BlueprintName = "FindMyCar"
+            ReferencedContainer = "container:FindMyCar.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "88BD2DE61F19AB5000AD8810"
-            BuildableName = "RunningApp.app"
-            BlueprintName = "RunningApp"
-            ReferencedContainer = "container:RunningApp.xcodeproj">
+            BuildableName = "FindMyCar.app"
+            BlueprintName = "FindMyCar"
+            ReferencedContainer = "container:FindMyCar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -88,9 +88,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "88BD2DE61F19AB5000AD8810"
-            BuildableName = "RunningApp.app"
-            BlueprintName = "RunningApp"
-            ReferencedContainer = "container:RunningApp.xcodeproj">
+            BuildableName = "FindMyCar.app"
+            BlueprintName = "FindMyCar"
+            ReferencedContainer = "container:FindMyCar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
