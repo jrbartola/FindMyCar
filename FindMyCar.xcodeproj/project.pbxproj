@@ -77,6 +77,7 @@
 		889BB38D1F5644BB00639941 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				889BB3831F56373800639941 /* DataModel.xcdatamodeld */,
 				889BB3901F565BC300639941 /* Location+CoreDataClass.swift */,
 				889BB3911F565BC300639941 /* Location+CoreDataProperties.swift */,
 				889BB3871F5637B100639941 /* DatabaseController.swift */,
@@ -106,7 +107,6 @@
 			children = (
 				889BB38E1F56466A00639941 /* Config.swift */,
 				889BB38D1F5644BB00639941 /* CoreData */,
-				889BB3831F56373800639941 /* DataModel.xcdatamodeld */,
 				88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */,
 				882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */,
 				88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */,

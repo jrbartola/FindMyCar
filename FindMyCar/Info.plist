@@ -39,10 +39,10 @@
 		<string>MKDirectionsModeCar</string>
 		<string>MKDirectionsModePedestrian</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription </key>
-	<string>We need your location to find stores you might like!</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need your location to keep track of where you parked!</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to find stores you might like!</string>
+	<string>We need your location to keep track of where you parked!</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

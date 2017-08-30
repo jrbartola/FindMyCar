@@ -86,7 +86,7 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
         cell.tableView = self.locationsTableView
-        cell.addressLabel.text = "\(LocationStore.locations[indexPath.row].address)"
+        cell.addressLabel.text = "\(LocationStore.locations[indexPath.row].address!)"
         cell.dateLabel.text = "\(Util.parseDate(date: LocationStore.locations[indexPath.row].date as! Date))"
         
         return cell
@@ -108,15 +108,13 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         mapVC.addLeftBarButton()
         mapVC.addRightBarButton()
         
-        Util.showActivityIndicator(uiView: mapVC.view, container: container, loadingView: loadingView, activityIndicator: activityIndicator)
+        Util.showActivityIndicator(uiView: mapVC.view, container: container, loadingView: loadingView, activityIndicator: activityIndicator, text: "Finding Route")
         
         mapVC.getRouteTo(location: loc, callback: {
             Util.stopActivityIndicator(uiView: mapVC.view, container: container, loadingView: loadingView, activityIndicator: activityIndicator)
         })
 
         self.tabBarController?.selectedIndex = 1
-        
-        
         
     }
     
@@ -130,7 +128,17 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
+            let toRemove = LocationStore.locations[indexPath.row]
+            
+            // Remove from local array
             LocationStore.locations.remove(at: indexPath.row)
+            
+            // Remove from CoreData
+            DatabaseController.getContext().delete(toRemove)
+            DatabaseController.saveContext()
+            
+            print("Removed location from CoreData")
+            
             tableView.reloadData()
         }
     }

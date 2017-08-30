@@ -10,29 +10,36 @@ import UIKit
 import MapKit
 import CoreData
 
-class MapViewController: UIViewController, MKMapViewDelegate{
+class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
     var directions = false
     var activityIndicator = UIActivityIndicatorView()
+    var locationManager: CLLocationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        LocationService.sharedInstance.startUpdatingLocation()
-        let coordinate = LocationService.sharedInstance.locationManager?.location?.coordinate
-            
+        
+        mapView.delegate = self
         mapView.showsUserLocation = true
-        //mapView.mapType = MKMapType.hybrid
-            
-        centerMapOnLocation(coordinate: coordinate)
+        
+        //locationManager = CLLocationManager()
+        locationManager.delegate = self
+        setupLocationManager()
         
         addLeftBarButton()
         addRightBarButton()
         addMapTrackingButton()
-        mapView.delegate = self
         
+
+        let coordinate = locationManager.location?.coordinate//LocationService.sharedInstance.locationManager?.location?.coordinate
+            
+        
+        //mapView.mapType = MKMapType.hybrid
+            
+        centerMapOnLocation(coordinate: coordinate)
+
     }
     
     func addMapTrackingButton() {
@@ -69,13 +76,11 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         return renderer
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        centerMapOnLocation(coordinate: location.coordinate)
-    }
+    
     
     func centerMapOnLocation(coordinate: CLLocationCoordinate2D?) {
         if let coord = coordinate {
+            print("COORD IS \(coord)")
             self.mapView.setCenter(coord, animated: true)
             let span = MKCoordinateSpanMake(0.075, 0.075)
             let region = MKCoordinateRegion(center: coord, span: span)
@@ -122,7 +127,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
     }
     
     func getRouteTo(location: Location, callback: @escaping () -> Void) {
-        guard let coord = LocationService.sharedInstance.locationManager?.location?.coordinate else {
+        guard let coord = locationManager.location?.coordinate else {
             print("Could not find a current Location...")
             return
             
@@ -196,16 +201,26 @@ class MapViewController: UIViewController, MKMapViewDelegate{
     }
     
     func addLocation() {
-        guard let location = LocationService.sharedInstance.locationManager?.location else {
+        guard let location = locationManager.location/*LocationService.sharedInstance.locationManager?.location*/ else {
             print("Could not retreive location coordinate...")
             return
         }
         
-        self.getAddressFor(location: location)
+        let container = UIView()
+        let loadingView = UIView()
+        let activityIndicator = UIActivityIndicatorView()
+
+        /* Show activity indicator when adding a new location to the CoreData store */
+        
+        Util.showActivityIndicator(uiView: self.view, container: container, loadingView: loadingView, activityIndicator: activityIndicator, text: "Saving Location")
+        
+        self.getAddressFor(location: location) {
+            Util.stopActivityIndicator(uiView: self.view, container: container, loadingView: loadingView, activityIndicator: activityIndicator)
+        }
         
     }
     
-    private func getAddressFor(location: CLLocation) {
+    private func getAddressFor(location: CLLocation, callback: @escaping () -> Void) {
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) in
             if let error = error {
                 print("Reverse geocoder failed with error" + error.localizedDescription)
@@ -233,11 +248,48 @@ class MapViewController: UIViewController, MKMapViewDelegate{
                 print("Added newLocation to CoreData")
                 DatabaseController.saveContext()
                 
+                callback()
+                
             } else {
                 print("Problem with the data received from geocoder")
             }
         })
     }
+    
+}
+
+
+//* LocationService Extension for this View Controller **/
+extension MapViewController: CLLocationManagerDelegate {
+    
+    fileprivate func setupLocationManager() {
+        
+        
+        // Make sure we are allowed to use location services
+        checkAuthorization()
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //locationManager.distanceFilter = 10
+        locationManager.startUpdatingLocation()
+        print("Starting to update locations...")
+    }
+    
+    fileprivate func checkAuthorization() {
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            // you have 2 choice
+            // 1. requestAlwaysAuthorization
+            // 2. requestWhenInUseAuthorization
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        centerMapOnLocation(coordinate: location?.coordinate)
+        print("Received a location update... ")
+    }
+    
     
 }
 
