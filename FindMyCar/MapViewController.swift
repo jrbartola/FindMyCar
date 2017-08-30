@@ -263,13 +263,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 extension MapViewController: CLLocationManagerDelegate {
     
     fileprivate func setupLocationManager() {
-        
-        
+
         // Make sure we are allowed to use location services
         checkAuthorization()
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        //locationManager.distanceFilter = 10
+        locationManager.distanceFilter = 100
         locationManager.startUpdatingLocation()
         print("Starting to update locations...")
     }
