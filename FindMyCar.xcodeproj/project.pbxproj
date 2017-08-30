@@ -10,8 +10,13 @@
 		882B25271F3A8F2F00D808B4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */; };
 		882B25291F3FF37800D808B4 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882B25281F3FF37800D808B4 /* LocationService.swift */; };
 		884D08691F2024320062DCA4 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D08681F2024320062DCA4 /* NetworkClient.swift */; };
-		887653DD1F3A7DCD00504574 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887653DC1F3A7DCD00504574 /* Locations.swift */; };
+		887653DD1F3A7DCD00504574 /* LocationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887653DC1F3A7DCD00504574 /* LocationStore.swift */; };
 		887653DF1F3A7E8300504574 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887653DE1F3A7E8300504574 /* LocationsViewController.swift */; };
+		889BB3851F56373800639941 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 889BB3831F56373800639941 /* DataModel.xcdatamodeld */; };
+		889BB3881F5637B100639941 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889BB3871F5637B100639941 /* DatabaseController.swift */; };
+		889BB38F1F56466A00639941 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889BB38E1F56466A00639941 /* Config.swift */; };
+		889BB3921F565BC300639941 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889BB3901F565BC300639941 /* Location+CoreDataClass.swift */; };
+		889BB3931F565BC300639941 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889BB3911F565BC300639941 /* Location+CoreDataProperties.swift */; };
 		88BD2DEB1F19AB5000AD8810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */; };
 		88BD2DED1F19AB5000AD8810 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */; };
 		88BD2DF01F19AB5000AD8810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BD2DEE1F19AB5000AD8810 /* Main.storyboard */; };
@@ -27,8 +32,13 @@
 		882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		882B25281F3FF37800D808B4 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		884D08681F2024320062DCA4 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		887653DC1F3A7DCD00504574 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		887653DC1F3A7DCD00504574 /* LocationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStore.swift; sourceTree = "<group>"; };
 		887653DE1F3A7E8300504574 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
+		889BB3841F56373800639941 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		889BB3871F5637B100639941 /* DatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
+		889BB38E1F56466A00639941 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		889BB3901F565BC300639941 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		889BB3911F565BC300639941 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		88BD2DE71F19AB5000AD8810 /* FindMyCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMyCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +64,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		889BB3861F56374A00639941 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				882B25281F3FF37800D808B4 /* LocationService.swift */,
+				887653DC1F3A7DCD00504574 /* LocationStore.swift */,
+				884D08681F2024320062DCA4 /* NetworkClient.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		889BB38D1F5644BB00639941 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				889BB3901F565BC300639941 /* Location+CoreDataClass.swift */,
+				889BB3911F565BC300639941 /* Location+CoreDataProperties.swift */,
+				889BB3871F5637B100639941 /* DatabaseController.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		88BD2DDE1F19AB5000AD8810 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +104,9 @@
 		88BD2DE91F19AB5000AD8810 /* FindMyCar */ = {
 			isa = PBXGroup;
 			children = (
+				889BB38E1F56466A00639941 /* Config.swift */,
+				889BB38D1F5644BB00639941 /* CoreData */,
+				889BB3831F56373800639941 /* DataModel.xcdatamodeld */,
 				88BD2DEA1F19AB5000AD8810 /* AppDelegate.swift */,
 				882B25261F3A8F2F00D808B4 /* TabBarViewController.swift */,
 				88BD2DEC1F19AB5000AD8810 /* MapViewController.swift */,
@@ -83,9 +116,7 @@
 				88BD2DF11F19AB5000AD8810 /* Assets.xcassets */,
 				88BD2DF31F19AB5000AD8810 /* LaunchScreen.storyboard */,
 				88BD2DF61F19AB5000AD8810 /* Info.plist */,
-				882B25281F3FF37800D808B4 /* LocationService.swift */,
-				887653DC1F3A7DCD00504574 /* Locations.swift */,
-				884D08681F2024320062DCA4 /* NetworkClient.swift */,
+				889BB3861F56374A00639941 /* Services */,
 				88F519001F52731E009D2E35 /* Styles.swift */,
 				88F519021F5359BC009D2E35 /* Util.swift */,
 			);
@@ -178,16 +209,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				889BB3921F565BC300639941 /* Location+CoreDataClass.swift in Sources */,
+				889BB3851F56373800639941 /* DataModel.xcdatamodeld in Sources */,
+				889BB38F1F56466A00639941 /* Config.swift in Sources */,
 				88F519031F5359BC009D2E35 /* Util.swift in Sources */,
 				88BD2DED1F19AB5000AD8810 /* MapViewController.swift in Sources */,
 				88F519011F52731E009D2E35 /* Styles.swift in Sources */,
 				887653DF1F3A7E8300504574 /* LocationsViewController.swift in Sources */,
-				887653DD1F3A7DCD00504574 /* Locations.swift in Sources */,
+				887653DD1F3A7DCD00504574 /* LocationStore.swift in Sources */,
 				88C811141F2835E2005EBFB2 /* LocationsTableViewCell.swift in Sources */,
 				88BD2DEB1F19AB5000AD8810 /* AppDelegate.swift in Sources */,
+				889BB3881F5637B100639941 /* DatabaseController.swift in Sources */,
 				882B25271F3A8F2F00D808B4 /* TabBarViewController.swift in Sources */,
 				884D08691F2024320062DCA4 /* NetworkClient.swift in Sources */,
 				882B25291F3FF37800D808B4 /* LocationService.swift in Sources */,
+				889BB3931F565BC300639941 /* Location+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +390,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		889BB3831F56373800639941 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				889BB3841F56373800639941 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 889BB3841F56373800639941 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 88BD2DDF1F19AB5000AD8810 /* Project object */;
 }

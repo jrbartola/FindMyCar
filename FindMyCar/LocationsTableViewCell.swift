@@ -23,7 +23,7 @@ class LocationsTableViewCell: UITableViewCell {
     
     let addressLabel: UILabel = {
         let label = UILabel()
-        label.text = "Sample Item"
+        label.text = "Sample Address"
         label.textColor = Styles.color(style: .lightBlue)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

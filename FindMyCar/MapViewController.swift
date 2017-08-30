@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-
+import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate{
 
@@ -82,6 +82,8 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             
             self.mapView.setRegion(region, animated: true)
 
+        } else {
+            print("Could not center on location...")
         }
     }
     
@@ -126,7 +128,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             
         }
         let currentPlacemark = MKPlacemark(coordinate: coord)
-        let destPlacemark = MKPlacemark(coordinate: location.location.coordinate)
+        let destPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(location.latitude, location.longitude))
         
         let currentItem = MKMapItem(placemark: currentPlacemark)
         let destItem = MKMapItem(placemark: destPlacemark)
@@ -157,7 +159,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             
             let anno = MKPointAnnotation()
             anno.coordinate = destPlacemark.coordinate
-            anno.title = location.name != nil ? location.name! : Util.parseDate(date: location.date)
+            anno.title = location.name != nil ? location.name! : Util.parseDate(date: location.date as! Date)
             
             let span = MKCoordinateSpanMake(0.075, 0.075)
             let region = MKCoordinateRegion(center: anno.coordinate, span: span)
@@ -217,8 +219,20 @@ class MapViewController: UIViewController, MKMapViewDelegate{
                 guard let street = addresses["Street"], let state = addresses["State"], let zipcode = addresses["ZIP"] else { return }
                 
                 let streetAddress = String(describing: street) + " " + String(describing: state) + ", " + String(describing: zipcode)
-                let newLocation = Location(date: Date(), location: location, name: nil, address: streetAddress)
-                Locations.locations.append(newLocation)
+                
+                let newLocation: Location = NSEntityDescription.insertNewObject(forEntityName: locationClassName, into: DatabaseController.getContext()) as! Location
+                
+                newLocation.address = streetAddress
+                newLocation.name = nil
+                newLocation.date = NSDate()
+                newLocation.latitude = location.coordinate.latitude
+                newLocation.longitude = location.coordinate.longitude
+                
+                // MARK - Save the new location to CoreData DB
+                LocationStore.locations.append(newLocation)
+                print("Added newLocation to CoreData")
+                DatabaseController.saveContext()
+                
             } else {
                 print("Problem with the data received from geocoder")
             }

@@ -7,14 +7,18 @@
 //
 
 import MapKit
+import CoreData
 
-class Locations {
+class LocationStore {
     static var locations: [Location] = []
+    
+    
 }
+//
+//struct Location {
+//    let date: Date
+//    let location: CLLocation
+//    let name: String?
+//    let address: String
+//}
 
-struct Location {
-    let date: Date
-    let location: CLLocation
-    let name: String?
-    let address: String
-}

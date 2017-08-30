@@ -13,7 +13,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = Styles.color(style: .lightBlue)
-        navigationItem.title = "Find Your Car"
+        navigationItem.title = navbarTitle
         //tabBar.backgroundColor = Styles.color(style: .lightBlue)
         //tabBar.barTintColor = Styles.color(style: .lightBlue)
         UITabBar.appearance().tintColor = Styles.color(style: .lightBlue)

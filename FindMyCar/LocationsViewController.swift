@@ -8,15 +8,17 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class LocationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var locationsTableView: UITableView!
     
-    let locationsCellIdentifier = "LocationsCell"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /*** Load Locations from CoreData ***/
+        self.loadLocationData()
         
         let backgroundView = UIImageView(image: #imageLiteral(resourceName: "roadbackground"))
         backgroundView.contentMode = .scaleAspectFill
@@ -36,6 +38,21 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    private func loadLocationData() {
+        
+        let fetchRequest: NSFetchRequest<Location> = Location.fetchRequest()
+        
+        do {
+            let searchResults = try DatabaseController.getContext().fetch(fetchRequest)
+            LocationStore.locations = searchResults
+            
+        } catch {
+            print("ERROR FETCHING FROM COREDATA: \(error)")
+            LocationStore.locations = []
+        }
+        
+    }
+    
     func removeLeftBarButton() {
         self.tabBarController?.navigationItem.leftBarButtonItem = nil
     }
@@ -45,7 +62,7 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Locations.locations.count
+        return LocationStore.locations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,10 +86,8 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
         cell.tableView = self.locationsTableView
-        cell.addressLabel.text = "\(Locations.locations[indexPath.row].address)"
-        cell.dateLabel.text = "\(Util.parseDate(date: Locations.locations[indexPath.row].date))"
-        
-        
+        cell.addressLabel.text = "\(LocationStore.locations[indexPath.row].address)"
+        cell.dateLabel.text = "\(Util.parseDate(date: LocationStore.locations[indexPath.row].date as! Date))"
         
         return cell
     }
@@ -80,7 +95,7 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! LocationsTableViewCell
-        let loc = Locations.locations[indexPath.row]
+        let loc = LocationStore.locations[indexPath.row]
         let destination = loc.address
         
         // Find route from current location to destination using the mapViewController
@@ -115,7 +130,7 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            Locations.locations.remove(at: indexPath.row)
+            LocationStore.locations.remove(at: indexPath.row)
             tableView.reloadData()
         }
     }
